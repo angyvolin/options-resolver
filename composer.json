@@ -1,0 +1,32 @@
+{
+    "name": "tequila/options-resolver",
+    "type": "library",
+    "description": "Tequila OptionsResolver library",
+    "keywords": ["options", "config", "configuration"],
+    "homepage": "https://github.com/tequila",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabien Potencier",
+            "email": "fabien@symfony.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "https://symfony.com/contributors"
+        },
+        {
+            "name": "Petr Buchyn",
+            "email": "petrbuchyn@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": { "Tequila\\OptionsResolver\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev"
+}
