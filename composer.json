@@ -22,11 +22,15 @@
     "require": {
         "php": ">=5.5.9"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    },
     "autoload": {
         "psr-4": { "Tequila\\OptionsResolver\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
