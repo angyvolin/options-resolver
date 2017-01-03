@@ -61,7 +61,7 @@ class OptionsResolver
      *
      * @var array
      */
-    private $resolvedOptionNormalizers = [];
+    private $normalizers = [];
 
     private static $typeAliases = [
         'boolean' => 'bool',
@@ -509,7 +509,7 @@ class OptionsResolver
      * @param \Closure $normalizer
      * @return $this
      */
-    public function setResolvedOptionNormalizer($option, \Closure $normalizer)
+    public function setNormalizer($option, \Closure $normalizer)
     {
         $this->resolvedOptionNormalizers[$option] = $normalizer;
 
