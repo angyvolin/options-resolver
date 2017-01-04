@@ -59,7 +59,7 @@ class OptionsResolver
      *
      * Normalizer closure will accept option value as first argument, and option name as second argument.
      *
-     * @var array
+     * @var \Closure[]
      */
     private $normalizers = [];
 
@@ -484,15 +484,13 @@ class OptionsResolver
             ));
         }
 
-        // Now process the individual options. Use offsetGet(), which resolves
-        // the option itself and any options that the option depends on
         foreach ($resolved as $option => $value) {
             $this->ensureOptionValueHasValidType($option, $value);
             $this->ensureOptionValueIsAllowed($option, $value);
 
             // apply normalizer to option
-            if (isset($this->resolvedOptionNormalizers[$option])) {
-                $normalizer = $this->resolvedOptionNormalizers[$option];
+            if (isset($this->normalizers[$option])) {
+                $normalizer = $this->normalizers[$option];
                 $value = $normalizer($value, $option);
                 $resolved[$option] = $value;
             }
@@ -511,7 +509,11 @@ class OptionsResolver
      */
     public function setNormalizer($option, \Closure $normalizer)
     {
-        $this->resolvedOptionNormalizers[$option] = $normalizer;
+        if (!$this->isDefined($option)) {
+            throw $this->undefinedOptionException($option);
+        }
+
+        $this->normalizers[$option] = $normalizer;
 
         return $this;
     }
